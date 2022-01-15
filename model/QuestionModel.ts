@@ -1,7 +1,9 @@
+import AnswerModel from "./AnswerModel";
+
 export default class QuestionModel {
     #id: number
     #enunciado: string
-    #resp: any[]
+    #resp: AnswerModel[]
     #correct: boolean
 
     constructor(id: number, enunciado: string, resp: any[], correct: false) {
@@ -25,5 +27,12 @@ export default class QuestionModel {
 
     get correct(): boolean {
         return this.#correct;
+    }
+
+    get answered() {
+        for(let resp of this.#resp) {
+            if(resp.revealed) return true
+        }
+        return false
     }
 }
