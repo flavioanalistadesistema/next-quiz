@@ -6,7 +6,7 @@ export default class QuestionModel {
     #resp: AnswerModel[]
     #correct: boolean
 
-    constructor(id: number, enunciado: string, resp: any[], correct: false) {
+    constructor(id: number, enunciado: string, resp: any[], correct= false) {
         this.#id = id
         this.#enunciado = enunciado
         this.#resp = resp
