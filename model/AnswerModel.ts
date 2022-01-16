@@ -28,4 +28,12 @@ export default class AnswerModel {
     get revealed(): boolean {
         return this.#revealed;
     }
+
+    toObject() {
+        return {
+            price: this.#price,
+            correct: this.#correct,
+            revealed: this.#revealed
+        }
+    }
 }
