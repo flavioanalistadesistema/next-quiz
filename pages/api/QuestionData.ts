@@ -1,5 +1,5 @@
-import QuestionModel from "../../../model/QuestionModel";
-import AnswerModel from "../../../model/AnswerModel";
+import QuestionModel from "../../model/QuestionModel";
+import AnswerModel from "../../model/AnswerModel";
 
 const question: QuestionModel[] = [
     new QuestionModel(1, 'Qual bicho transmite doença de chagas?', [
