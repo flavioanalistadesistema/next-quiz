@@ -13,6 +13,18 @@ const question: QuestionModel[] = [
         AnswerModel.error('Coco'),
         AnswerModel.error('Caju'),
         AnswerModel.correct('Abobora')
+    ]),
+    new QuestionModel(3, 'Qual é o coletivo de caẽs?', [
+        AnswerModel.error('Manada'),
+        AnswerModel.error('Côco'),
+        AnswerModel.error('Chucho'),
+        AnswerModel.correct('Matilha')
+    ]),
+    new QuestionModel(4, 'Qual é o triângulo que tem todos os lados diferentes?', [
+        AnswerModel.error('Equilátero'),
+        AnswerModel.error('Isóceles'),
+        AnswerModel.error('Trapézio'),
+        AnswerModel.correct('Escaleno')
     ])
 ]
 
