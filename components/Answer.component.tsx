@@ -5,7 +5,7 @@ interface AnswerComponentProps {
     value: AnswerModel
     indice: number
     letter: string
-    fontColor: string
+    backGroundColor: string
 
 }
 export default function AnswerComponent(props: AnswerComponentProps) {
@@ -15,7 +15,7 @@ export default function AnswerComponent(props: AnswerComponentProps) {
         <div className={styles.answer}>
             <div className={styles.content_answer}>
                 <div className={styles.front}>
-                    <div className={styles.value}>
+                    <div className={styles.letter} style={{backgroundColor: props.backGroundColor}}>
                         {props.letter}
                     </div>
                     <div className={styles.value}>

@@ -18,7 +18,7 @@ export default function Question(props: QuestionProps) {
                     value={resp}
                     indice={i}
                     letter="A"
-                    fontColor="#F2C866"
+                    backGroundColor="#F2C866"
                 />
             )
         })
