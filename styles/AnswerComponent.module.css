@@ -3,11 +3,13 @@
 }
 
 .content_answer {
-
 }
 
 .front {
-
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 15px;
+    color: black;
 }
 
 .verse {
@@ -15,9 +17,22 @@
 }
 
 .letter {
-
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 40px;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 1.3rem;
+    margin-right: 20px;
 }
 
 .value {
+    font-size: 1.3rem;
+    font-weight: 700;
+}
 
+.front, .verse {
+    display: flex;
 }
