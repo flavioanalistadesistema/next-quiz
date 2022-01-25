@@ -1,19 +1,23 @@
 .answer {
     display: flex;
+    min-width: 500px;
+    width: 80%;
+    height: 100px;
+    margin: 10px;
 }
 
 .content_answer {
+    position: relative;
+    display: flex;
+    flex: 1;
 }
 
 .front {
+    align-items: center;
     background-color: #fff;
     border-radius: 12px;
     padding: 15px;
     color: black;
-}
-
-.verse {
-
 }
 
 .letter {
@@ -34,5 +38,12 @@
 }
 
 .front, .verse {
+    position: absolute;
     display: flex;
+    height: 100%;
+    width: 100%;
+}
+
+.verse {
+
 }
