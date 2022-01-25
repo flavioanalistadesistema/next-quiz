@@ -3,6 +3,13 @@ import QuestionModel from "../model/QuestionModel";
 import Statement from "./Statement";
 import AnswerComponent from "./Answer.component";
 
+const letter = [
+    {value: 'A', color: '#F2CB66'},
+    {value: 'B', color: '#F266BA'},
+    {value: 'C', color: '#85D4F2'},
+    {value: 'D', color: '#BCE596'}
+]
+
 interface QuestionProps {
     value: QuestionModel
 }
@@ -17,8 +24,8 @@ export default function Question(props: QuestionProps) {
                     key={i}
                     value={resp}
                     indice={i}
-                    letter="A"
-                    backGroundColor="#F2C866"
+                    letter={letter[i].value}
+                    backGroundColor={letter[i].color}
                 />
             )
         })
