@@ -33,22 +33,31 @@ export default class QuestionModel {
     get answered() {
         for(let resp of this.#resp) {
             if(resp.revealed) return true
-        }
-        return false
+        } return false
+    }
+
+    respondWith(indice: number): QuestionModel {
+        const correct = this.#resp[indice]?.correct;
+        const answer = this.#resp.map((resp, i) => {
+            const answerSelect = indice === i;
+            const answerRevealed = answerSelect || resp.correct
+            return answerRevealed ? resp.reveal() : resp
+        })
+        return new QuestionModel(this.#id, this.#enunciado, answer, correct);
     }
 
     shuffleAnswers(): QuestionModel {
         let shuffleAnswers = shuffle(this.#resp);
         return new QuestionModel(this.#id, this.#enunciado, shuffleAnswers, this.#correct);
-
     }
 
     toObject() {
         return {
             id: this.#id,
             enunciado: this.#enunciado,
-            resp: this.#resp.map((response) => response.toObject()),
-            correct: this.#correct
+            respondida: this.answered,
+            correct: this.#correct,
+            resp: this.#resp.map((response) => response.toObject())
         }
     }
 }
