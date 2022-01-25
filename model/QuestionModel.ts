@@ -1,4 +1,5 @@
 import AnswerModel from "./AnswerModel";
+import {shuffle} from "../function/arrays";
 
 export default class QuestionModel {
     #id: number
@@ -34,6 +35,12 @@ export default class QuestionModel {
             if(resp.revealed) return true
         }
         return false
+    }
+
+    shuffleAnswers(): QuestionModel {
+        let shuffleAnswers = shuffle(this.#resp);
+        return new QuestionModel(this.#id, this.#enunciado, shuffleAnswers, this.#correct);
+
     }
 
     toObject() {
