@@ -1,6 +1,7 @@
 import Question from "../components/Question";
 import QuestionModel from "../model/QuestionModel";
 import AnswerModel from "../model/AnswerModel";
+import {useState} from "react";
 
 
 export default function Home() {
@@ -10,6 +11,13 @@ export default function Home() {
         AnswerModel.error('Neymar'),
         AnswerModel.correct('Pelé')
     ])
+
+    const [quest, setQuest] = useState(question)
+
+    function onAnswer(indice: number) {
+        setQuest(question.respondWith(indice))
+        console.log(indice)
+    }
   return (
     <div style={{
         display: 'flex',
@@ -17,7 +25,7 @@ export default function Home() {
         alignItems: 'center',
         height: '100vh '
     }}>
-      <Question value={question} />
+      <Question value={quest} onAnswer={onAnswer}/>
     </div>
   )
 }

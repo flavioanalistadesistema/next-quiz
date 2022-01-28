@@ -45,6 +45,23 @@
     width: 100%;
 }
 
-.verse {
+.verse > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px;
+    flex: 1;
+}
 
+.correct .value, .error .value {
+    font-size: 1.5rem;
+}
+
+.correct {
+    background-color: #2baa6d;
+}
+
+.error {
+    background-color: #e44a4c;
 }
