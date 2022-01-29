@@ -30,6 +30,10 @@ export default class QuestionModel {
         return this.#correct;
     }
 
+    get notAnswer() {
+        return !this.answered
+    }
+
     get answered() {
         for(let resp of this.#resp) {
             if(resp.revealed) return true

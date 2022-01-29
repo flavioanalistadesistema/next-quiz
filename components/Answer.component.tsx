@@ -22,7 +22,7 @@ export default function AnswerComponent(props: AnswerComponentProps) {
                             {props.letter}
                         </div>
                         <div className={styles.value}>
-                            {value.price}
+                            {value.value}
                         </div>
                     </div>
                 ) : (
@@ -30,12 +30,12 @@ export default function AnswerComponent(props: AnswerComponentProps) {
                         {value.correct ? (
                             <div className={styles.correct}>
                                 <div>Sua resposta certa é ....</div>
-                                <div className={styles.value}>{value.price}</div>
+                                <div className={styles.value}>{value.value}</div>
                             </div>
                         ) : (
                             <div className={styles.error}>
                                 <div>A resposta selecionada esta errada...</div>
-                                <div className={styles.value}>{value.price}</div>
+                                <div className={styles.value}>{value.value}</div>
                             </div>
                         )}
                     </div>

@@ -1,10 +1,10 @@
 export default class AnswerModel {
-    #price: string
+    #value: string
     #correct: boolean
     #revealed: boolean
 
-    constructor(price: string, correct: boolean, revealed = false) {
-        this.#price = price
+    constructor(value: string, correct: boolean, revealed = false) {
+        this.#value = value
         this.#correct = correct
         this.#revealed = revealed
     }
@@ -17,8 +17,8 @@ export default class AnswerModel {
         return new AnswerModel(value, false)
     }
 
-    get price(): string {
-        return this.#price;
+    get value(): string {
+        return this.#value;
     }
 
     get correct(): boolean {
@@ -30,12 +30,12 @@ export default class AnswerModel {
     }
 
     reveal(): AnswerModel {
-        return new AnswerModel(this.price, this.#correct, true);
+        return new AnswerModel(this.value, this.#correct, true);
     }
 
     toObject() {
         return {
-            price: this.#price,
+            value: this.#value,
             correct: this.#correct,
             revealed: this.#revealed
         }

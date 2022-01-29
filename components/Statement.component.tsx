@@ -4,7 +4,7 @@ interface StatementProps {
     text: string
 }
 
-export default function Statement(props: StatementProps) {
+export default function StatementComponent(props: StatementProps) {
         return (
             <div className={styles.statement}>
                 <span className={styles.text}>{props.text}</span>

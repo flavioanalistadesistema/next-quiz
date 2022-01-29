@@ -1,6 +1,6 @@
 import styles from '../styles/Question.module.css';
 import QuestionModel from "../model/QuestionModel";
-import Statement from "./Statement";
+import StatementComponent from "./Statement.component";
 import AnswerComponent from "./Answer.component";
 import Time from "./Time.component";
 
@@ -17,7 +17,7 @@ interface QuestionProps {
     timeEnd: () => void
 }
 
-export default function Question(props: QuestionProps) {
+export default function QuestionComponent(props: QuestionProps) {
     const question = props.value
 
     function render() {
@@ -37,8 +37,8 @@ export default function Question(props: QuestionProps) {
 
     return (
         <div className={styles.question}>
-            <Statement text={question.enunciado} />
-            <Time duracao={10} timeEnd={props.timeEnd} />
+            <StatementComponent text={question.enunciado} />
+            <Time duracao={5} timeEnd={props.timeEnd} />
             {render()}
         </div>
     )
