@@ -18,6 +18,11 @@ export default function Home() {
         setQuest(question.respondWith(indice))
         console.log(indice)
     }
+
+    function timeEnd() {
+        setQuest(question.respondWith(-1))
+    }
+
   return (
     <div style={{
         display: 'flex',
@@ -25,7 +30,7 @@ export default function Home() {
         alignItems: 'center',
         height: '100vh '
     }}>
-      <Question value={quest} onAnswer={onAnswer}/>
+      <Question value={quest} onAnswer={onAnswer} timeEnd={timeEnd}/>
     </div>
   )
 }

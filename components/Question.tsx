@@ -2,6 +2,7 @@ import styles from '../styles/Question.module.css';
 import QuestionModel from "../model/QuestionModel";
 import Statement from "./Statement";
 import AnswerComponent from "./Answer.component";
+import Time from "./Time.component";
 
 const letter = [
     {value: 'A', color: '#F2CB66'},
@@ -13,6 +14,7 @@ const letter = [
 interface QuestionProps {
     value: QuestionModel
     onAnswer: (indice: number) => void
+    timeEnd: () => void
 }
 
 export default function Question(props: QuestionProps) {
@@ -32,9 +34,11 @@ export default function Question(props: QuestionProps) {
             )
         })
     }
+
     return (
         <div className={styles.question}>
             <Statement text={question.enunciado} />
+            <Time duracao={10} timeEnd={props.timeEnd} />
             {render()}
         </div>
     )
