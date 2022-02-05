@@ -43,7 +43,7 @@ export default function Home() {
                 onAnswer={onAnswer}
                 timeEnd={timeEnd} 
                 responseTime={5}/>
-            <ButtonComponent text="Próximo" />
+            <ButtonComponent text="Próximo" href="/result"/>
         </div>
     )
 }

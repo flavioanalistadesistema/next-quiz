@@ -1,0 +1,12 @@
+.buttonQuestion {
+    display: flex;
+    color: #fff;
+    background-color: cadetblue;
+    border: none;
+    border-radius: 8px;
+    font-weight: 200;
+    font-size: 1.5rem;
+    padding: 10px 20px;
+    margin-top: 20px;
+
+}

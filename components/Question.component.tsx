@@ -13,6 +13,7 @@ const letter = [
 
 interface QuestionProps {
     value: QuestionModel
+    responseTime?: number
     onAnswer: (indice: number) => void
     timeEnd: () => void
 }
@@ -38,7 +39,7 @@ export default function QuestionComponent(props: QuestionProps) {
     return (
         <div className={styles.question}>
             <StatementComponent text={question.enunciado} />
-            <Time duracao={5} timeEnd={props.timeEnd} />
+            <Time duracao={props.responseTime ?? 10} timeEnd={props.timeEnd} />
             {render()}
         </div>
     )
