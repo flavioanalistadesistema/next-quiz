@@ -14,8 +14,31 @@ export default function Home() {
         AnswerModel.correct('Pelé')
     ])
 
+    const [idQuestion, setIdQuestion] = useState<number[]>([])
     const [quest, setQuest] = useState(question)
     const questRef = useRef < QuestionModel > ();
+
+    const _BASE_URL = 'http://localhost:3000/api'
+
+    async function loadQuestionIds() {
+        const resp = await fetch(`${_BASE_URL}/quiz`)
+        const idsQuestion = await resp.json()
+        setIdQuestion(idsQuestion)
+    }
+
+    async function loadQuestion(id: number) {
+        const resp = await fetch(`${_BASE_URL}/question/${id}`)
+        const json = await resp.json()
+        console.log('json', json);
+    }
+
+    useEffect(() => {
+        idQuestion.length > 0 && loadQuestion(idQuestion[0])
+    }, [idQuestion])
+
+    useEffect(() => {
+        loadQuestionIds()
+    }, [])
 
     useEffect(() => {
         questRef.current = quest
