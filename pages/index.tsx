@@ -1,8 +1,9 @@
 import QuestionComponent from "../components/Question.component";
 import QuestionModel from "../model/QuestionModel";
 import AnswerModel from "../model/AnswerModel";
-import {useEffect, useRef, useState} from "react";
+import { useEffect, useRef, useState } from "react";
 import ButtonComponent from "../components/Button.componet";
+import QuestionaryComponent from "../components/Questionary.component";
 
 
 export default function Home() {
@@ -14,10 +15,10 @@ export default function Home() {
     ])
 
     const [quest, setQuest] = useState(question)
-    const questRef = useRef<QuestionModel>();
+    const questRef = useRef < QuestionModel > ();
 
     useEffect(() => {
-        questRef.current =  quest
+        questRef.current = quest
     }, [quest])
 
     function onAnswer(indice: number) {
@@ -30,6 +31,14 @@ export default function Home() {
         }
     }
 
+    function answered(questionModel: QuestionModel) {
+
+    }
+
+    function send() {
+
+    }
+
     return (
         <div style={{
             display: 'flex',
@@ -38,12 +47,14 @@ export default function Home() {
             alignItems: 'center',
             height: '100vh '
         }}>
-            <QuestionComponent
-                value={quest}
-                onAnswer={onAnswer}
-                timeEnd={timeEnd} 
-                responseTime={5}/>
-            <ButtonComponent text="Próximo" href="/result"/>
+
+            < QuestionaryComponent
+                questionModel={quest}
+                questionEnd={true}
+                answered={answered}
+                send={send}
+            />
+            
         </div>
     )
 }
