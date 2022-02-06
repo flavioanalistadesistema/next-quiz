@@ -50,11 +50,11 @@ export default function Home() {
 
             < QuestionaryComponent
                 questionModel={quest}
-                questionEnd={true}
+                questionEnd={false}
                 answered={answered}
                 send={send}
             />
-            
+
         </div>
     )
 }

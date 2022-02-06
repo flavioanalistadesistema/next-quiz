@@ -20,15 +20,18 @@ export default function QuestionaryComponent(props: QuestionaryPropos) {
 
     return (
         <div className={styles.questionary}>
-            < QuestionComponent
-                value={props.questionModel}
-                responseTime={5}
-                onAnswer={answerProvided}
-                timeEnd={props.send}/>
+            {props.questionModel ?
+                < QuestionComponent
+                    value={props.questionModel}
+                    responseTime={5}
+                    onAnswer={answerProvided}
+                    timeEnd={props.send} />
+                : false
+            }
 
             < ButtonComponent
                 onClick={props.send}
-                text={props.questionEnd ? 'Finalizar' : 'Próximo'}/>
+                text={props.questionEnd ? 'Finalizar' : 'Próximo'} />
 
         </div>
     )
