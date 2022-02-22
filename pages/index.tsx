@@ -14,7 +14,7 @@ export default function Home() {
         AnswerModel.correct('Pelé')
     ])
 
-    const [idQuestion, setIdQuestion] = useState<number[]>([])
+    const [idQuestion, setIdQuestion ] = useState<number[]>([])
     const [quest, setQuest] = useState(question)
     const questRef = useRef < QuestionModel > ();
 
@@ -29,7 +29,8 @@ export default function Home() {
     async function loadQuestion(id: number) {
         const resp = await fetch(`${_BASE_URL}/question/${id}`)
         const json = await resp.json()
-        console.log('json', json);
+        const newQuestion = QuestionModel.createadUsingObject(json)
+        setQuest(newQuestion);
     }
 
     useEffect(() => {

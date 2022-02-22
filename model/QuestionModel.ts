@@ -1,5 +1,6 @@
 import AnswerModel from "./AnswerModel";
 import {shuffle} from "../function/arrays";
+import {json} from "stream/consumers";
 
 export default class QuestionModel {
     #id: number
@@ -53,6 +54,11 @@ export default class QuestionModel {
     shuffleAnswers(): QuestionModel {
         let shuffleAnswers = shuffle(this.#resp);
         return new QuestionModel(this.#id, this.#enunciado, shuffleAnswers, this.#correct);
+    }
+
+    static createadUsingObject(obj: QuestionModel): QuestionModel {
+        const answer = obj.resp.map(resp => AnswerModel.createUsingObject(resp))
+        return new QuestionModel(obj.id, obj.enunciado, answer , obj.correct)
     }
 
     toObject() {
