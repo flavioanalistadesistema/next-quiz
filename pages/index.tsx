@@ -16,6 +16,7 @@ export default function Home() {
 
     const [idQuestion, setIdQuestion ] = useState<number[]>([])
     const [quest, setQuest] = useState(question)
+    const [answerRigth, setAnswerRigth] = useState(0)
     const questRef = useRef < QuestionModel > ();
 
     const _BASE_URL = 'http://localhost:3000/api'
@@ -55,8 +56,10 @@ export default function Home() {
         }
     }
 
-    function answered(questionModel: QuestionModel) {
-
+    function answered(answered: QuestionModel) {
+        setQuest(answered)
+        const statusAnswer = answered.correct ? 1 : 0;
+        setAnswerRigth(statusAnswer)
     }
 
     function send() {
