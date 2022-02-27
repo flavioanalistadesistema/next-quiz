@@ -21,11 +21,11 @@ interface QuestionProps {
 export default function QuestionComponent(props: QuestionProps) {
     const question = props.value
 
-    function render() {
+    function renderAnswer() {
         return question.resp.map((resp, i) => {
             return (
                 <AnswerComponent
-                    key={i}
+                    key={`${question.id}-${i}`}
                     value={resp}
                     indice={i}
                     letter={letter[i].value}
@@ -39,8 +39,11 @@ export default function QuestionComponent(props: QuestionProps) {
     return (
         <div className={styles.question}>
             <StatementComponent text={question.enunciado} />
-            <Time duracao={props.responseTime ?? 10} timeEnd={props.timeEnd} />
-            {render()}
+            <Time
+                key={question.id}
+                duracao={props.responseTime ?? 10}
+                timeEnd={props.timeEnd} />
+            {renderAnswer()}
         </div>
     )
 }

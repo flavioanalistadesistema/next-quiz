@@ -39,10 +39,8 @@ export default function Home() {
     }
 
     function nextIdQuestion() {
-        if(quest) {
-            const nextIndice = idQuestion.indexOf(quest.id) + 1;
-            return idQuestion[nextIndice];
-        }
+        const nextIndice = idQuestion.indexOf(quest.id) + 1;
+        return idQuestion[nextIndice];
     }
 
     function goToNextStep() {
@@ -60,12 +58,12 @@ export default function Home() {
         })
     }
 
-    return (
-            < QuestionaryComponent
-                questionModel={quest}
-                questionEnd={nextIdQuestion() === undefined}
-                answered={questionAnswered}
-                send={goToNextStep}
-            />
-    )
+    return quest ? (
+        < QuestionaryComponent
+            questionModel={quest}
+            questionEnd={nextIdQuestion() === undefined}
+            answered={questionAnswered}
+            send={goToNextStep}
+        />
+    ) : false
 }
