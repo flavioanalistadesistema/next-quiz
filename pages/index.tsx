@@ -1,25 +1,16 @@
-import QuestionComponent from "../components/Question.component";
 import QuestionModel from "../model/QuestionModel";
-import AnswerModel from "../model/AnswerModel";
 import { useEffect, useRef, useState } from "react";
-import ButtonComponent from "../components/Button.componet";
 import QuestionaryComponent from "../components/Questionary.component";
+import { useRouter } from "next/router";
 
+const _BASE_URL = 'http://localhost:3000/api'
 
 export default function Home() {
-    const question = new QuestionModel(1, 'Qual é o melhor jogador do mundo?', [
-        AnswerModel.error('Maradona'),
-        AnswerModel.error('Garrincha'),
-        AnswerModel.error('Neymar'),
-        AnswerModel.correct('Pelé')
-    ])
+    const router = useRouter();
 
     const [idQuestion, setIdQuestion ] = useState<number[]>([])
-    const [quest, setQuest] = useState(question)
-    const [answerRigth, setAnswerRigth] = useState(0)
-    const questRef = useRef < QuestionModel > ();
-
-    const _BASE_URL = 'http://localhost:3000/api'
+    const [quest, setQuest] = useState<QuestionModel>()
+    const [answerRigth, setAnswerRigth] = useState<number>(0)
 
     async function loadQuestionIds() {
         const resp = await fetch(`${_BASE_URL}/quiz`)
@@ -27,61 +18,54 @@ export default function Home() {
         setIdQuestion(idsQuestion)
     }
 
-    async function loadQuestion(id: number) {
+    async function loadQuest(id) {
         const resp = await fetch(`${_BASE_URL}/question/${id}`)
-        const json = await resp.json()
-        const newQuestion = QuestionModel.createadUsingObject(json)
-        setQuest(newQuestion);
+        const obj = await resp.json()
+        setQuest(QuestionModel.createadUsingObject(obj))
     }
-
-    useEffect(() => {
-        idQuestion.length > 0 && loadQuestion(idQuestion[0])
-    }, [idQuestion])
 
     useEffect(() => {
         loadQuestionIds()
     }, [])
 
     useEffect(() => {
-        questRef.current = quest
-    }, [quest])
+        idQuestion.length > 0 && loadQuest(idQuestion[0])
+    }, [idQuestion])
 
-    function onAnswer(indice: number) {
-        setQuest(question.respondWith(indice))
+    function questionAnswered(questionAnswered: QuestionModel) {
+        setQuest(questionAnswered)
+        const correct = questionAnswered.correct
+        setAnswerRigth(answerRigth +  (correct ? 1 : 0))
     }
 
-    function timeEnd() {
-        if (questRef.current.notAnswer) {
-            setQuest(questRef.current.respondWith(-1))
+    function nextIdQuestion() {
+        if(quest) {
+            const nextIndice = idQuestion.indexOf(quest.id) + 1;
+            return idQuestion[nextIndice];
         }
     }
 
-    function answered(answered: QuestionModel) {
-        setQuest(answered)
-        const statusAnswer = answered.correct ? 1 : 0;
-        setAnswerRigth(statusAnswer)
+    function goToNextStep() {
+        const newId = nextIdQuestion();
+        newId ? loadQuest(newId) : finalize();
     }
 
-    function send() {
-
+    function finalize() {
+        router.push({
+            pathname: "/result",
+            query: {
+                questions: idQuestion.length,
+                correct: answerRigth
+            }
+        })
     }
 
     return (
-        <div style={{
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            alignItems: 'center',
-            height: '100vh '
-        }}>
-
             < QuestionaryComponent
                 questionModel={quest}
-                questionEnd={false}
-                answered={answered}
-                send={send}
+                questionEnd={nextIdQuestion() === undefined}
+                answered={questionAnswered}
+                send={goToNextStep}
             />
-
-        </div>
     )
 }

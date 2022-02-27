@@ -11,7 +11,7 @@ const question: QuestionModel[] = [
     new QuestionModel(2, 'Qual fruto é conhecido no norte e nordeste pelo nome "jerimum"?', [
         AnswerModel.error('Caju'),
         AnswerModel.error('Coco'),
-        AnswerModel.error('Caju'),
+        AnswerModel.error('Maracuja'),
         AnswerModel.correct('Abobora')
     ]),
     new QuestionModel(3, 'Qual é o coletivo de caẽs?', [
