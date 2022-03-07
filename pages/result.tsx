@@ -4,8 +4,8 @@ import { useRouter } from "next/router"
 export default function Result() {
     const router = useRouter();
 
-    const total = router.query.questions;
-    const correct = router.query.correct;
+    const total = +router.query.questions;
+    const correct = +router.query.correct;
     const porcent = Math.round((correct / total) * 100);
     
     
