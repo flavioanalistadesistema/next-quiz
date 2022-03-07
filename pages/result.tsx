@@ -1,5 +1,7 @@
-import  styles  from "../styles/Result.module.css";
+import styles from "../styles/Result.module.css";
 import { useRouter } from "next/router"
+import EstatictComponent from "../components/Estatict.component";
+import ButtonComponent from "../components/Button.componet";
 
 export default function Result() {
     const router = useRouter();
@@ -8,14 +10,31 @@ export default function Result() {
     const correct = +router.query.correct;
     const porcent = Math.round((correct / total) * 100);
     
-    
+    function renderCorrect() {
+        return  porcent < 50 ? '#FF4500' : porcent >= 50 && porcent < 75 ? '#32CD32' : '#66CDAA';
+    }
+
+    function renderPorcent() {
+        return  porcent < 50 ? '#FF6347' : porcent >= 50 && porcent < 75 ? '#ADFF2F' : '#AFEEEE';
+    }
+
     return (
         <div className={styles.result}>
-            <h1>Page Result</h1>
-            <div>Total: {total}</div>
-            <div>Respostas corretas: {correct}</div>
-            <div>Porcentagem de acerto: {`${correct}%`}</div>
-
+            <h1>Resultado Final</h1>
+            <div style={{display: 'flex'}}>
+                < EstatictComponent text="Perguntas" value={total} />
+                < EstatictComponent 
+                    text="Certas" 
+                    value={correct} 
+                    background={renderCorrect()}/>
+                < EstatictComponent 
+                    text="Porcentual" 
+                    value={`${porcent}%`} 
+                    background={renderPorcent()}/>
+            </div>
+            < ButtonComponent 
+                text="Tentar Novamente"
+                href="/"/>
         </div>
     )
 }
