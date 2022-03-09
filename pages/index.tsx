@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import QuestionaryComponent from "../components/Questionary.component";
 import { useRouter } from "next/router";
 
-const _BASE_URL = 'http://localhost:3000/api'
+const BASE_URL = 'http://localhost:3000/api'
 
 export default function Home() {
     const router = useRouter();
@@ -13,13 +13,13 @@ export default function Home() {
     const [answerRigth, setAnswerRigth] = useState<number>(0)
 
     async function loadQuestionIds() {
-        const resp = await fetch(`${_BASE_URL}/quiz`)
+        const resp = await fetch(`${process.env.BASE_URL}/quiz`)
         const idsQuestion = await resp.json()
         setIdQuestion(idsQuestion)
     }
 
     async function loadQuest(id) {
-        const resp = await fetch(`${_BASE_URL}/question/${id}`)
+        const resp = await fetch(`${process.env.BASE_URL}/question/${id}`)
         const obj = await resp.json()
         setQuest(QuestionModel.createadUsingObject(obj))
     }
