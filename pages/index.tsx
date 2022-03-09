@@ -3,22 +3,31 @@ import { useEffect, useRef, useState } from "react";
 import QuestionaryComponent from "../components/Questionary.component";
 import { useRouter } from "next/router";
 
+export async function getServerSideProps() {
+    return {
+        props: {
+            baseUrl: process.env.PUBLIC_BASE_URL,
+        },
+    }
+}
 
-export default function Home() {
+export default function Home(props) {
     const router = useRouter();
+    const url = props.baseUrl;
+    
 
-    const [idQuestion, setIdQuestion ] = useState<number[]>([])
+    const [idQuestion, setIdQuestion] = useState<number[]>([])
     const [quest, setQuest] = useState<QuestionModel>()
     const [answerRigth, setAnswerRigth] = useState<number>(0)
 
     async function loadQuestionIds() {
-        const resp = await fetch(`${process.env.BASE_URL}/quiz`)
+        const resp = await fetch(`${url}/quiz`)
         const idsQuestion = await resp.json()
         setIdQuestion(idsQuestion)
     }
 
     async function loadQuest(id) {
-        const resp = await fetch(`${process.env.BASE_URL}/question/${id}`)
+        const resp = await fetch(`${url}/question/${id}`)
         const obj = await resp.json()
         setQuest(QuestionModel.createadUsingObject(obj))
     }
@@ -34,7 +43,7 @@ export default function Home() {
     function questionAnswered(questionAnswered: QuestionModel) {
         setQuest(questionAnswered)
         const correct = questionAnswered.correct
-        setAnswerRigth(answerRigth +  (correct ? 1 : 0))
+        setAnswerRigth(answerRigth + (correct ? 1 : 0))
     }
 
     function nextIdQuestion() {
