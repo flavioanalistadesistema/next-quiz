@@ -23,7 +23,7 @@ export default function QuestionaryComponent(props: QuestionaryPropos) {
             {props.questionModel ?
                 < QuestionComponent
                     value={props.questionModel}
-                    responseTime={5}
+                    responseTime={10}
                     onAnswer={answerProvided}
                     timeEnd={props.send} />
                 : false
