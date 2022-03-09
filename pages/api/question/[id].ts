@@ -1,6 +1,6 @@
 import QuestionData from "../QuestionData";
 
-export default (req, res) => {
+const idquestion = (req, res) => {
     const idSelect = +req.query.id;
     const validationQuestion = QuestionData.filter(question => question.id === idSelect);
 
@@ -11,3 +11,4 @@ export default (req, res) => {
         res.status(204).send();
     }
 }
+export default idquestion;
