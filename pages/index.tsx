@@ -3,7 +3,6 @@ import { useEffect, useRef, useState } from "react";
 import QuestionaryComponent from "../components/Questionary.component";
 import { useRouter } from "next/router";
 
-const BASE_URL = 'http://localhost:3000/api'
 
 export default function Home() {
     const router = useRouter();
