@@ -6,3 +6,13 @@
     height: 100vh;
     font-size: 2rem;
 }
+
+.link {
+    margin-top: 10px;
+    color: aquamarine;
+    font-size: 1rem;
+    font-weight: 100;
+}
+.link:hover {
+    transform: scale(1.1);
+}

@@ -2,6 +2,7 @@ import styles from "../styles/Result.module.css";
 import { useRouter } from "next/router"
 import EstatictComponent from "../components/Estatict.component";
 import ButtonComponent from "../components/Button.componet";
+import Link from "next/link";
 
 export default function Result() {
     const router = useRouter();
@@ -35,6 +36,11 @@ export default function Result() {
             < ButtonComponent 
                 text="Tentar Novamente"
                 href="/"/>
+                <div className={styles.link}>
+                    <span>
+                        <Link href="https://github.com/flavioanalistadesistema/next-quiz" >Link do repositorio</Link>
+                    </span>
+                </div>
         </div>
     )
 }
