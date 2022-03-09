@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 export async function getServerSideProps() {
     return {
         props: {
-            baseUrl: process.env.PUBLIC_BASE_URL,
+            baseUrl: process.env.BASE_URL,
         },
     }
 }
